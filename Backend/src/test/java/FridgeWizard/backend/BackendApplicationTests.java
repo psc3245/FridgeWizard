@@ -1,10 +1,10 @@
-package com.psc3245.FridgeWizard;
+package FridgeWizard.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FridgeWizardApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {

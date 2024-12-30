@@ -1,13 +1,13 @@
-package com.psc3245.FridgeWizard;
+package FridgeWizard.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FridgeWizardApplication {
+public class BackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FridgeWizardApplication.class, args);
+		SpringApplication.run(BackendApplication.class, args);
 	}
 
 }
