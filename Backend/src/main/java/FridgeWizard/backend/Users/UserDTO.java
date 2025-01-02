@@ -1,36 +1,20 @@
 package FridgeWizard.backend.Users;
 
-import jakarta.persistence.*;
+public class UserDTO {
 
-@Entity
-@Table(name = "Users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(unique = true)
     private String email;
 
-    @Column
     private String username;
 
-    // TODO FIX PLAINTEXT
-    @Column
-    private String password;
+    public UserDTO() {}
 
-    // Constructors
-
-    public User(String email, String username, String password) {
+    public UserDTO(Long userId, String email, String username) {
+        this.userId = userId;
         this.email = email;
         this.username = username;
-        this.password = password;
     }
-
-    public User() {}
-
-    // Getters and Setters
 
     public Long getUserId() {
         return userId;
@@ -54,13 +38,5 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
