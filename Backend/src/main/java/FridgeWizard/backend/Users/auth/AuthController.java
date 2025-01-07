@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = {"http://localhost", "http://localhost:80", "http://127.0.0.1", "http://127.0.0.1:80"})
 @RestController
 @RequestMapping(path = "/api/auth")
 public class AuthController {
@@ -39,8 +40,10 @@ public class AuthController {
         }
     }
 
-    @GetMapping(path = "/login")
+    @PostMapping(path = "/login")
     public ResponseEntity<UserDTO> loginAttempt(@RequestBody @Valid LogInRequest logInRequest) {
+        System.out.println("Login attempt U: " + logInRequest.getEmailOrUsername()
+                + " P: " + logInRequest.getPassword());
         try {
             Long id = authService.logIn(logInRequest);
             UserDTO userDTO = userService.convertUserIdToDTO(id);
