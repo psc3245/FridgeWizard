@@ -42,8 +42,6 @@ public class AuthController {
 
     @PostMapping(path = "/login")
     public ResponseEntity<UserDTO> loginAttempt(@RequestBody @Valid LogInRequest logInRequest) {
-        System.out.println("Login attempt U: " + logInRequest.getEmailOrUsername()
-                + " P: " + logInRequest.getPassword());
         try {
             Long id = authService.logIn(logInRequest);
             UserDTO userDTO = userService.convertUserIdToDTO(id);
