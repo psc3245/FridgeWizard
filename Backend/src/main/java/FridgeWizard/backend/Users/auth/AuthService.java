@@ -16,7 +16,7 @@ public class AuthService {
         this.userRepository = userRepository;
     }
 
-    public void signUp(SignUpRequest signUpRequest) throws Exception {
+    public Long signUp(SignUpRequest signUpRequest) throws Exception {
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             // Email is already in use
             throw new Exception("Email Already In Use, Try Logging in.");
@@ -30,6 +30,7 @@ public class AuthService {
                 signUpRequest.getUsername(), signUpRequest.getPassword());
 
         userRepository.save(u);
+        return u.getUserId();
     }
 
     // If 0 is returned, log in failed

@@ -1,8 +1,7 @@
 package FridgeWizard.backend.Food;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import FridgeWizard.backend.Fridge.Fridge;
+import jakarta.persistence.*;
 
 // @Entity
 public class Food {
@@ -17,6 +16,10 @@ public class Food {
 
     @Column
     private String unit;
+
+    @ManyToOne
+    @JoinColumn(name = "fridgeId")
+    private Fridge fridge;
 
     public Food() {}
 

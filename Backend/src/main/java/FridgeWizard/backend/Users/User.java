@@ -1,5 +1,6 @@
 package FridgeWizard.backend.Users;
 
+import FridgeWizard.backend.Fridge.Fridge;
 import jakarta.persistence.*;
 
 @Entity
@@ -19,6 +20,11 @@ public class User {
     // TODO FIX PLAINTEXT
     @Column
     private String password;
+
+    @OneToOne
+    @JoinColumn(name = "fridge_id")
+    private Fridge fridge;
+
 
     // Constructors
 

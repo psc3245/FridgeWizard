@@ -31,11 +31,15 @@ public class AuthController {
 
 
     @PostMapping(path = "/signup")
-    public ResponseEntity signUpAttempt(@RequestBody @Valid SignUpRequest signUpRequest) {
+    public ResponseEntity<UserDTO> signUpAttempt(@RequestBody @Valid SignUpRequest signUpRequest) {
+        System.out.println("Attempted signup with credentials: " + signUpRequest.getEmail() + " "
+                + signUpRequest.getUsername() + " " + signUpRequest.getPassword());
         try {
-            authService.signUp(signUpRequest);
-            return ResponseEntity.ok("User Registered Successfully");
+            Long id = authService.signUp(signUpRequest);
+            UserDTO userDTO = userService.convertUserIdToDTO(id);
+            return ResponseEntity.ok(userDTO);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ResponseEntity("User registration failed", HttpStatus.BAD_REQUEST);
         }
     }
