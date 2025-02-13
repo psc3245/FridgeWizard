@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = {"http://localhost", "http://localhost:80", "http://127.0.0.1", "http://127.0.0.1:80"})
 @RestController
 @RequestMapping(path = "/api/auth")
 public class AuthController {
@@ -30,16 +31,20 @@ public class AuthController {
 
 
     @PostMapping(path = "/signup")
-    public ResponseEntity signUpAttempt(@RequestBody @Valid SignUpRequest signUpRequest) {
+    public ResponseEntity<UserDTO> signUpAttempt(@RequestBody @Valid SignUpRequest signUpRequest) {
+        System.out.println("Attempted signup with credentials: " + signUpRequest.getEmail() + " "
+                + signUpRequest.getUsername() + " " + signUpRequest.getPassword());
         try {
-            authService.signUp(signUpRequest);
-            return ResponseEntity.ok("User Registered Successfully");
+            Long id = authService.signUp(signUpRequest);
+            UserDTO userDTO = userService.convertUserIdToDTO(id);
+            return ResponseEntity.ok(userDTO);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ResponseEntity("User registration failed", HttpStatus.BAD_REQUEST);
         }
     }
 
-    @GetMapping(path = "/login")
+    @PostMapping(path = "/login")
     public ResponseEntity<UserDTO> loginAttempt(@RequestBody @Valid LogInRequest logInRequest) {
         try {
             Long id = authService.logIn(logInRequest);
