@@ -1,7 +1,10 @@
 package FridgeWizard.backend.Users;
 
+import FridgeWizard.backend.Food.Food;
 import FridgeWizard.backend.Fridge.Fridge;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Users")

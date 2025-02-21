@@ -1,25 +1,16 @@
 package FridgeWizard.backend.Food;
 
-import FridgeWizard.backend.Fridge.Fridge;
 import jakarta.persistence.*;
 
-// @Entity
+
 public class Food {
-    @Id
     private Long foodId;
 
-    @Column
     private String name;
 
-    @Column
     private Float qty;
 
-    @Column
     private String unit;
-
-    @ManyToOne
-    @JoinColumn(name = "fridgeId")
-    private Fridge fridge;
 
     public Food() {}
 
