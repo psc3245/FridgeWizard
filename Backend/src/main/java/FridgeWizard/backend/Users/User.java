@@ -1,7 +1,9 @@
 package FridgeWizard.backend.Users;
 
-import FridgeWizard.backend.Fridge.Fridge;
+import FridgeWizard.backend.Food.Food;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Users")
@@ -21,9 +23,8 @@ public class User {
     @Column
     private String password;
 
-    @OneToOne
-    @JoinColumn(name = "fridge_id")
-    private Fridge fridge;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Food> foodList;
 
 
     // Constructors

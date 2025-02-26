@@ -1,38 +1,30 @@
 package FridgeWizard.backend.Food;
 
-import FridgeWizard.backend.Users.User;
-import jakarta.persistence.*;
+public class FoodDTO {
 
-@Entity
-public class Food {
-    @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // Generated value being passed in DTO causes
+    private Long userId;
     private Long foodId;
-
-    @Column
     private String name;
-
-    @Column
     private Float qty;
-
-    @Column
     private String unit;
 
-    @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
-    private User user;
+    public FoodDTO() {}
 
-    public Food() {}
-
-    public Food(Long id, String name, Float qty, String unit, User u) {
-        this.foodId = id;
+    public FoodDTO(Long userId, Long foodId, String name, Float qty, String unit) {
+        this.userId = userId;
+        this.foodId = foodId;
         this.name = name;
         this.qty = qty;
         this.unit = unit;
-        this.user = u;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public Long getFoodId() {
         return foodId;
@@ -64,13 +56,5 @@ public class Food {
 
     public void setUnit(String unit) {
         this.unit = unit;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
