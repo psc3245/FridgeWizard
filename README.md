@@ -1,5 +1,5 @@
 # Fridge Wizard:
-Fridge Wizard is a full stack web application that acts as a kitchen manager. It's main areas of features are **Food**, **Recipes**, **Grocery Lists**, **Stats**, and **Profile**.
+Fridge Wizard is a full stack web application that acts as a kitchen manager that I am currently working on on the side. It is an in progress application that I contribute to in my free time. It's main areas of features are **Food**, **Recipes**, **Grocery Lists**, **Stats**, and **Profile**.
 
 # Food:
 Planned Functionality:
