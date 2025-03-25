@@ -25,7 +25,6 @@ public class FoodService {
         this.foodRepository = foodRepository;
     }
 
-
     public FoodDTO createNewFood(FoodCreationRequest foodCreationRequest) throws IllegalArgumentException {
 
         // Check if food ID already exists, so add the new qty to old
@@ -57,6 +56,13 @@ public class FoodService {
         return castFoodToDTO(f);
     }
 
+    public FoodDTO getFoodById(Long foodId) {
+        if (!foodRepository.existsByFoodId(foodId)) return null;
+        // Using get is safe because we have already checked for a null response
+        Food f = foodRepository.getFoodByFoodId(foodId).get();
+        return castFoodToDTO(f);
+    }
+
     public List<FoodDTO> getAllFood() {
         List<Food> foods = foodRepository.findAll();
         List<FoodDTO> ret = new ArrayList<>();
@@ -64,6 +70,18 @@ public class FoodService {
             ret.add(castFoodToDTO(f));
         }
         return ret;
+    }
+
+    // TODO
+    // Why doens't this work? No idea. I thought I had that shit written right but I guess I am incorrect
+    // Correctly enters traverses the branch and then just doesn't delete
+    public ResponseEntity deleteFood(Long foodId) {
+        var f = foodRepository.getFoodByFoodId(foodId);
+        if (!f.isPresent()) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        foodRepository.deleteById(f.get().getFoodId());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
@@ -77,4 +95,7 @@ public class FoodService {
         ret.setUnit(f.getUnit());
         return ret;
     }
+
+
+
 }
